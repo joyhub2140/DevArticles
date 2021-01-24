@@ -289,7 +289,7 @@ Kubernetes Master 节点运行组件如下：
 - Keepalived 在运行过程中周期检查本机的 HAProxy 进程状态，如果检测到 HAProxy 进程异常，则触发重新选主的过程，VIP 将飘移到新选出来的主节点，从而实现 VIP 的高可用
 - 所有组件（如 kubeclt、apiserver、controller-manager、scheduler 等）都通过 VIP +HAProxy 监听的 6444 端口访问 `kube-apiserver` 服务（**注意：`kube-apiserver` 默认端口为 6443，为了避免冲突我们将 HAProxy 端口设置为 6444，其它组件都是通过该端口统一请求 apiserver**）
 
-![负载均衡架构图](20190427104124213.png)
+![负载均衡架构图](assets/20190427104124213.png)
 
 ### 创建 HAProxy 启动脚本
 
