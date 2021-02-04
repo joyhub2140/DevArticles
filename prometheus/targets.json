@@ -1,0 +1,29 @@
+[
+  {
+    "targets": [
+      "172.24.107.44:9100"
+    ],
+    "labels": {
+      "instance": "node1",
+      "job": "node1"
+    }
+  },
+  {
+    "targets": [
+      "192.168.223.2:9100"
+    ],
+    "labels": {
+      "instance": "node2",
+      "job": "node2"
+    }
+  },
+  {
+    "targets": [
+      "192.168.223.6:9100"
+    ],
+    "labels": {
+      "instance": "node3",
+      "job": "node3"
+    }
+  }
+]
