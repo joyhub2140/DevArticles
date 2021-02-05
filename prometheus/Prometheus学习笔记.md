@@ -1,4 +1,4 @@
-# Prometheus实战
+# Prometheus 学习笔记
 
 ## 安装
 
@@ -766,7 +766,277 @@ targets.json
 curl -X POST 'http://localhost:9090/-/reload'
 ```
 
+### 基于Consul的服务发现
 
+#### 安装consul集群
+
+docker-compose.yml
+
+```yaml
+version: '2'
+
+networks:
+  consul-net:
+
+services:
+  consul1:
+    image: consul:latest
+    container_name: node1
+    command: agent -server -bootstrap-expect=3 -node=node1 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+    networks:
+      - consul-net
+
+  consul2:
+    image: consul:latest
+    container_name: node2
+    command: agent -server -retry-join=node1 -node=node2 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+    depends_on:
+      - consul1
+    networks:
+      - consul-net
+
+  consul3:
+    image: consul:latest
+    container_name: node3
+    command: agent -server -retry-join=node1 -node=node3 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+    depends_on:
+      - consul1
+    networks:
+      - consul-net
+
+  consul4:
+    image: consul:latest
+    container_name: node4
+    command: agent -retry-join=node1 -node=ndoe4 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1 -ui
+    ports:
+      - 8500:8500
+    depends_on:
+      - consul1
+      - consul2
+      - consul3
+    networks:
+      - consul-net
+```
+
+运行consul集群
+
+```bash
+docker-compose up -d
+docker-compose ps -a
+Name               Command               State                                              Ports
+---------------------------------------------------------------------------------------------------------------------------------------------
+node1   docker-entrypoint.sh agent ...   Up      8300/tcp, 8301/tcp, 8301/udp, 8302/tcp, 8302/udp, 8500/tcp, 8600/tcp, 8600/udp
+node2   docker-entrypoint.sh agent ...   Up      8300/tcp, 8301/tcp, 8301/udp, 8302/tcp, 8302/udp, 8500/tcp, 8600/tcp, 8600/udp
+node3   docker-entrypoint.sh agent ...   Up      8300/tcp, 8301/tcp, 8301/udp, 8302/tcp, 8302/udp, 8500/tcp, 8600/tcp, 8600/udp
+node4   docker-entrypoint.sh agent ...   Up      8300/tcp, 8301/tcp, 8301/udp, 8302/tcp, 8302/udp, 0.0.0.0:8500->8500/tcp, 8600/tcp, 8600/udp
+```
+
+访问 Consul Web 管理页面
+
+http://localhost:8500/ui/dc1/nodes
+
+通过命令行查看集群状态、以及集群成员状态
+
+```bash
+❯ docker exec -it node4 /bin/sh
+# 查看集群状态
+/ # consul operator raft list-peers
+Node   ID                                    Address          State     Voter  RaftProtocol
+node1  a29c1227-9437-1c2d-6d4f-e151bf087530  172.20.0.2:8300  leader    true   3
+node2  af6c684a-536e-9007-cd2a-2f41b182ff72  172.20.0.3:8300  follower  true   3
+node3  b9c04219-dc36-4e12-71bc-de3e2eb808ec  172.20.0.4:8300  follower  true   3
+# 查看集群成员状态
+/ # consul members
+Node   Address          Status  Type    Build  Protocol  DC   Segment
+node1  172.20.0.2:8301  alive   server  1.8.4  2         dc1  <all>
+node2  172.20.0.3:8301  alive   server  1.8.4  2         dc1  <all>
+node3  172.20.0.4:8301  alive   server  1.8.4  2         dc1  <all>
+ndoe4  172.20.0.5:8301  alive   client  1.8.4  2         dc1  <default>
+```
+
+#### 向consul集群中注册节点
+
+新建`node.json`
+
+```json
+{
+  "ID": "node3",
+  "Name": "node3-192.168.223.5",
+  "Tags": [
+    "node3"
+  ],
+  "Address": "192.168.223.5",
+  "Port": 9100,
+  "Meta": {
+    "app": "node3",
+    "team": "anchnet",
+    "project": "smartops"
+  },
+  "EnableTagOverride": false,
+  "Check": {
+    "HTTP": "http://192.168.223.5:9100/metrics",
+    "Interval": "10s"
+  },
+  "Weights": {
+    "Passing": 10,
+    "Warning": 1
+  }
+}
+```
+
+调用 API 注册服务
+
+```bash
+curl --request PUT --data @node.json http://127.0.0.1:8500/v1/agent/service/register?replace-existing-checks=1
+```
+
+注册完毕，通过 Consul Web 管理页面可以查看到该服务已注册成功。注意：这里需要启动 node-exporter 否则即使注册成功了，健康检测也不通过。
+
+从consul集群中注销掉某个服务，可以通过如下 API 命令操作，例如注销上边添加的`node3` 服务
+
+```bash
+$ curl -X PUT http://127.0.0.1:8500/v1/agent/service/deregister/node3
+```
+
+#### 配置 Prometheus 实现自动服务发现
+
+现在 Consul 服务已经启动完毕，并成功注册了一个服务，接下来，我们需要配置 Prometheus 来使用 Consul 自动服务发现，目的就是能够将上边添加的服务自动发现到 Prometheus 的 Targets 中，增加 `prometheus.yml` 配置如下：
+
+```yaml
+...
+  - job_name: 'consul-sd'
+    consul_sd_configs:
+    - server: '172.24.107.38:8500'
+      services: []
+```
+
+使用 `consul_sd_configs` 来配置使用 Consul 服务发现类型，`server` 为 Consul 的服务地址，这里跟上边要对应上。 配置完毕后，重启 Prometheus 服务，此时可以通过 Prometheus UI 页面的 Targets 下查看是否配置成功。
+
+可以看到，在 Targets 中能够成功的自动发现 Consul 中的 Services 信息，后期需要添加新的 Targets 时，只需要通过 API 往 Consul 中注册服务即可，Prometheus 就能自动发现该服务，是不是很方便。
+
+不过，我们会发现有如下几个问题：
+
+1. 会发现 Prometheus 同时加载出来了默认服务 consul，这个是不需要的。
+2. 默认只显示 job 及 instance 两个标签，其他标签都默认属于 `before relabeling` 下，有些必要的服务信息，也想要在标签中展示，该如何操作呢？
+3. 如果需要自定义一些标签，例如 team、group、project 等关键分组信息，方便后边 alertmanager 进行告警规则匹配，该如何处理呢？
+4. 所有 Consul 中注册的 Service 都会默认加载到 Prometheus 下配置的 `consul_prometheus` 组，如果有多种类型的 exporter，如何在 Prometheus 中配置分配给指定类型的组，方便直观的区别它们？
+
+以上问题，我们可以通过 Prometheus 配置中的 `relabel_configs` 参数来解决。
+
+#### 配置 relabel_configs 实现自定义标签及分类
+
+Prometheus 允许用户在采集任务设置中，通过 `relabel_configs` 来添加自定义的 Relabeling 的额过程，来对标签进行指定规则的重写。 Prometheus 加载 Targets 后，这些 Targets 会自动包含一些默认的标签，Target 以 `__` 作为前置的标签是在系统内部使用的，这些标签不会被写入到样本数据中。眼尖的会发现，每次增加 Target 时会自动增加一个 instance 标签，而 instance 标签的内容刚好对应 Target 实例的 `__address__` 值，这是因为实际上 Prometheus 内部做了一次标签重写处理，默认 `__address__` 标签设置为 `<host>:<port>` 地址，经过标签重写后，默认会自动将该值设置为 `instance` 标签，所以我们能够在页面看到该标签。
+详细 `relabel_configs` 配置及说明可以参考 [relabel_config](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config) 官网说明，这里我简单列举一下里面每个 `relabel_action` 的作用，方便下边演示。
+
+- **replace**: 根据 regex 的配置匹配 `source_labels` 标签的值（注意：多个 `source_label` 的值会按照 separator 进行拼接），并且将匹配到的值写入到 `target_label` 当中，如果有多个匹配组，则可以使用 ${1}, ${2} 确定写入的内容。如果没匹配到任何内容则不对 `target_label` 进行重新， 默认为 replace。
+- **keep**: 丢弃 `source_labels` 的值中没有匹配到 regex 正则表达式内容的 Target 实例
+- **drop**: 丢弃 `source_labels` 的值中匹配到 regex 正则表达式内容的 Target 实例
+- **hashmod**: 将 `target_label` 设置为关联的 `source_label` 的哈希模块
+- **labelmap**: 根据 regex 去匹配 Target 实例所有标签的名称（注意是名称），并且将捕获到的内容作为为新的标签名称，regex 匹配到标签的的值作为新标签的值
+- **labeldrop**: 对 Target 标签进行过滤，会移除匹配过滤条件的所有标签
+- **labelkeep**: 对 Target 标签进行过滤，会移除不匹配过滤条件的所有标签
+
+接下来，我们来挨个处理上述问题。
+
+问题一，我们可以配置 `relabel_configs` 来实现标签过滤，只加载符合规则的服务。以上边为例，可以通过过滤 `__meta_consul_tags` 标签为 `test` 的服务，`relabel_config` 向 Consul 注册服务的时候，只加载匹配 regex 表达式的标签的服务到自己的配置文件。修改 `prometheus.yml` 配置如下：
+
+```yaml
+...
+- job_name: 'consul-sd'
+    consul_sd_configs:
+    - server: '172.24.107.38:8500'
+      services: []
+    relabel_configs:
+      - source_labels: [__meta_consul_tags]
+        regex: .*node.*
+        action: keep
+      - regex: __meta_consul_service_metadata_(.+)
+        action: labelmap
+```
+
+解释下，这里的 `relabel_configs` 配置作用为丢弃源标签中 `__meta_consul_tags` 不包含 `node` 标签的服务，`__meta_consul_tags` 对应到 Consul 服务中的值为 `"tags": ["node3"]`，默认 consul 服务是不带该标签的，从而实现过滤。重启 Prometheus 可以看到现在只获取了 `node3-192.168.223.5` 这个服务了。
+
+完整的`prometheus.yml` 配置如下：
+
+```yaml
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# remote_write:
+#   - url: "http://promscale-connector:9201/write"
+
+# remote_read:
+#   - url: "http://promscale-connector:9201/read"
+
+remote_write:
+  - url: "http://influxdb:8086/api/v1/prom/write?db=prometheus&u=influxdb&p=influxdb"
+
+remote_read:
+  - url: "http://influxdb:8086/api/v1/prom/read?db=prometheus&u=influxdb&p=influxdb"
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+  - "alerts/*.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+    - targets: ['prometheus:9090']
+
+  # - job_name: 'node1'
+  #   static_configs:
+  #   - targets: ['172.24.107.47:9100']
+  #     labels:
+  #       instance: 'node1'
+
+  # - job_name: 'node2'
+  #   static_configs:
+  #   - targets: ['192.168.223.2:9100']
+  #     labels:
+  #       instance: 'node2'
+
+  - job_name: 'file_ds'
+    file_sd_configs:
+    - files:
+      - 'targets.json'
+      refresh_interval: 1m
+
+  - job_name: 'consul-sd'
+    consul_sd_configs:
+    - server: '172.24.107.38:8500'
+      services: []
+    relabel_configs:
+      - source_labels: [__meta_consul_tags]
+        regex: .*node.*
+        action: keep
+      - regex: __meta_consul_service_metadata_(.+)
+        action: labelmap
+```
+
+配置完毕后，重新加载 Prometheus 服务，此时可以通过 Prometheus UI 页面的 Targets 下查看是否配置成功。
+
+```bash
+curl -X POST 'http://localhost:9090/-/reload'
+```
 
 # PromQL 常用查询语句
 
@@ -1945,6 +2215,54 @@ networks:
     driver: bridge
 ```
 
+### docker-compose.yml
+
+```yaml
+version: '2'
+
+networks:
+  consul-net:
+
+services:
+  consul1:
+    image: consul:latest
+    container_name: node1
+    command: agent -server -bootstrap-expect=3 -node=node1 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+    networks:
+      - consul-net
+
+  consul2:
+    image: consul:latest
+    container_name: node2
+    command: agent -server -retry-join=node1 -node=node2 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+    depends_on:
+      - consul1
+    networks:
+      - consul-net
+
+  consul3:
+    image: consul:latest
+    container_name: node3
+    command: agent -server -retry-join=node1 -node=node3 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+    depends_on:
+      - consul1
+    networks:
+      - consul-net
+
+  consul4:
+    image: consul:latest
+    container_name: node4
+    command: agent -retry-join=node1 -node=ndoe4 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1 -ui
+    ports:
+      - 8500:8500
+    depends_on:
+      - consul1
+      - consul2
+      - consul3
+    networks:
+      - consul-net
+```
+
 # 参考文档
 
 https://yunlzheng.gitbook.io/prometheus-book/
@@ -1964,6 +2282,8 @@ https://prometheus.io/docs/prometheus/latest/querying/examples/
 https://prometheus.io/docs/prometheus/latest/querying/api/
 
 https://github.com/timescale/promscale
+
+https://www.consul.io/api/agent/service
 
 https://grafana.com/grafana/dashboards/8919
 
