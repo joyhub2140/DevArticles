@@ -93,16 +93,16 @@ scrape_configs:
     static_configs:
     - targets: ['localhost:9090']
 
-	# 监控node1实例
+  # 监控node1实例
   - job_name: 'node1'
     static_configs:
     - targets: ['localhost:9100']
       labels:
         instance: 'node1'
-	# 监控node2实例
+  # 监控node2实例
   - job_name: 'node2'
     params:
-    	# 过滤收集器
+      # 过滤收集器
       collect[]:
         - cpu
         - meminfo
@@ -582,24 +582,7 @@ go_memstats_alloc_bytes
 go_memstats_alloc_bytes_total
 go_memstats_buck_hash_sys_bytes
 go_memstats_frees_total
-go_memstats_gc_cpu_fraction
-go_memstats_gc_sys_bytes
-go_memstats_heap_alloc_bytes
-go_memstats_heap_idle_bytes
-go_memstats_heap_inuse_bytes
-go_memstats_heap_objects
-go_memstats_heap_released_bytes
-go_memstats_heap_sys_bytes
-go_memstats_last_gc_time_seconds
-go_memstats_lookups_total
-go_memstats_mallocs_total
-go_memstats_mcache_inuse_bytes
-go_memstats_mcache_sys_bytes
-go_memstats_mspan_inuse_bytes
-go_memstats_mspan_sys_bytes
-go_memstats_next_gc_bytes
-go_memstats_other_sys_bytes
-go_memstats_stack_inuse_bytes
+....
 go_memstats_stack_sys_bytes
 go_memstats_sys_bytes
 go_threads
@@ -621,26 +604,7 @@ node_disk_read_bytes_total
 node_disk_read_errors_total
 node_disk_read_retries_total
 node_disk_read_sectors_total
-node_disk_read_time_seconds_total
-node_disk_reads_completed_total
-node_disk_reads_merged_total
-node_disk_write_errors_total
-node_disk_write_retries_total
-node_disk_write_time_seconds_total
-node_disk_writes_completed_total
-node_disk_writes_merged_total
-node_disk_written_bytes_total
-node_disk_written_sectors_total
-node_entropy_available_bits
-node_exporter_build_info
-node_filefd_allocated
-node_filefd_maximum
-node_filesystem_avail_bytes
-node_filesystem_device_error
-node_filesystem_files
-node_filesystem_files_free
-node_filesystem_free_bytes
-node_filesystem_readonly
+....
 node_filesystem_size_bytes
 node_forks_total
 node_intr_total
@@ -665,74 +629,7 @@ node_memory_Dirty_bytes
 node_memory_HardwareCorrupted_bytes
 node_memory_HugePages_Free
 node_memory_HugePages_Rsvd
-node_memory_HugePages_Surp
-node_memory_HugePages_Total
-node_memory_Hugepagesize_bytes
-node_memory_Inactive_anon_bytes
-node_memory_Inactive_bytes
-node_memory_Inactive_file_bytes
-node_memory_KernelStack_bytes
-node_memory_Mapped_bytes
-node_memory_MemAvailable_bytes
-node_memory_MemFree_bytes
-node_memory_MemTotal_bytes
-node_memory_Mlocked_bytes
-node_memory_NFS_Unstable_bytes
-node_memory_PageTables_bytes
-node_memory_SReclaimable_bytes
-node_memory_SUnreclaim_bytes
-node_memory_Shmem_bytes
-node_memory_Slab_bytes
-node_memory_SwapCached_bytes
-node_memory_SwapFree_bytes
-node_memory_SwapTotal_bytes
-node_memory_Unevictable_bytes
-node_memory_VmallocChunk_bytes
-node_memory_VmallocTotal_bytes
-node_memory_VmallocUsed_bytes
-node_memory_WritebackTmp_bytes
-node_memory_Writeback_bytes
-node_memory_active_bytes
-node_memory_compressed_bytes
-node_memory_free_bytes
-node_memory_inactive_bytes
-node_memory_swap_total_bytes
-node_memory_swap_used_bytes
-node_memory_swapped_in_bytes_total
-node_memory_swapped_out_bytes_total
-node_memory_total_bytes
-node_memory_wired_bytes
-node_netstat_Icmp6_InErrors
-node_netstat_Icmp6_InMsgs
-node_netstat_Icmp6_OutMsgs
-node_netstat_Icmp_InErrors
-node_netstat_Icmp_InMsgs
-node_netstat_Icmp_OutMsgs
-node_netstat_Ip6_InOctets
-node_netstat_Ip6_OutOctets
-node_netstat_IpExt_InOctets
-node_netstat_IpExt_OutOctets
-node_netstat_Ip_Forwarding
-node_netstat_TcpExt_ListenDrops
-node_netstat_TcpExt_ListenOverflows
-node_netstat_TcpExt_SyncookiesFailed
-node_netstat_TcpExt_SyncookiesRecv
-node_netstat_TcpExt_SyncookiesSent
-node_netstat_Tcp_ActiveOpens
-node_netstat_Tcp_CurrEstab
-node_netstat_Tcp_InErrs
-node_netstat_Tcp_PassiveOpens
-node_netstat_Tcp_RetransSegs
-node_netstat_Udp6_InDatagrams
-node_netstat_Udp6_InErrors
-node_netstat_Udp6_NoPorts
-node_netstat_Udp6_OutDatagrams
-node_netstat_UdpLite6_InErrors
-node_netstat_UdpLite_InErrors
-node_netstat_Udp_InDatagrams
-node_netstat_Udp_InErrors
-node_netstat_Udp_NoPorts
-node_netstat_Udp_OutDatagrams
+.....
 node_network_address_assign_type
 node_network_carrier
 node_network_carrier_changes_total
@@ -741,274 +638,7 @@ node_network_dormant
 node_network_flags
 node_network_iface_id
 node_network_iface_link
-node_network_iface_link_mode
-node_network_mtu_bytes
-node_network_name_assign_type
-node_network_net_dev_group
-node_network_protocol_type
-node_network_receive_bytes_total
-node_network_receive_compressed_total
-node_network_receive_drop_total
-node_network_receive_errs_total
-node_network_receive_fifo_total
-node_network_receive_frame_total
-node_network_receive_multicast_total
-node_network_receive_packets_total
-node_network_speed_bytes
-node_network_transmit_bytes_total
-node_network_transmit_carrier_total
-node_network_transmit_colls_total
-node_network_transmit_compressed_total
-node_network_transmit_drop_total
-node_network_transmit_errs_total
-node_network_transmit_fifo_total
-node_network_transmit_multicast_total
-node_network_transmit_packets_total
-node_network_transmit_queue_length
-node_network_up
-node_nf_conntrack_entries
-node_nf_conntrack_entries_limit
-node_procs_blocked
-node_procs_running
-node_scrape_collector_duration_seconds
-node_scrape_collector_success
-node_sockstat_FRAG_inuse
-node_sockstat_FRAG_memory
-node_sockstat_RAW_inuse
-node_sockstat_TCP_alloc
-node_sockstat_TCP_inuse
-node_sockstat_TCP_mem
-node_sockstat_TCP_mem_bytes
-node_sockstat_TCP_orphan
-node_sockstat_TCP_tw
-node_sockstat_UDPLITE_inuse
-node_sockstat_UDP_inuse
-node_sockstat_UDP_mem
-node_sockstat_UDP_mem_bytes
-node_sockstat_sockets_used
-node_textfile_scrape_error
-node_time_seconds
-node_timex_estimated_error_seconds
-node_timex_frequency_adjustment_ratio
-node_timex_loop_time_constant
-node_timex_maxerror_seconds
-node_timex_offset_seconds
-node_timex_pps_calibration_total
-node_timex_pps_error_total
-node_timex_pps_frequency_hertz
-node_timex_pps_jitter_seconds
-node_timex_pps_jitter_total
-node_timex_pps_shift_seconds
-node_timex_pps_stability_exceeded_total
-node_timex_pps_stability_hertz
-node_timex_status
-node_timex_sync_status
-node_timex_tai_offset_seconds
-node_timex_tick_seconds
-node_uname_info
-node_vmstat_pgfault
-node_vmstat_pgmajfault
-node_vmstat_pgpgin
-node_vmstat_pgpgout
-node_vmstat_pswpin
-node_vmstat_pswpout
-process_cpu_seconds_total
-process_max_fds
-process_open_fds
-process_resident_memory_bytes
-process_start_time_seconds
-process_virtual_memory_bytes
-process_virtual_memory_max_bytes
-prometheus_api_remote_read_queries
-prometheus_build_info
-prometheus_config_last_reload_success_timestamp_seconds
-prometheus_config_last_reload_successful
-prometheus_engine_queries
-prometheus_engine_queries_concurrent_max
-prometheus_engine_query_duration_seconds
-prometheus_engine_query_duration_seconds_count
-prometheus_engine_query_duration_seconds_sum
-prometheus_engine_query_log_enabled
-prometheus_engine_query_log_failures_total
-prometheus_http_request_duration_seconds_bucket
-prometheus_http_request_duration_seconds_count
-prometheus_http_request_duration_seconds_sum
-prometheus_http_requests_total
-prometheus_http_response_size_bytes_bucket
-prometheus_http_response_size_bytes_count
-prometheus_http_response_size_bytes_sum
-prometheus_notifications_alertmanagers_discovered
-prometheus_notifications_dropped_total
-prometheus_notifications_errors_total
-prometheus_notifications_latency_seconds
-prometheus_notifications_latency_seconds_count
-prometheus_notifications_latency_seconds_sum
-prometheus_notifications_queue_capacity
-prometheus_notifications_queue_length
-prometheus_notifications_sent_total
-prometheus_remote_storage_enqueue_retries_total
-prometheus_remote_storage_highest_timestamp_in_seconds
-prometheus_remote_storage_max_samples_per_send
-prometheus_remote_storage_metadata_bytes_total
-prometheus_remote_storage_metadata_failed_total
-prometheus_remote_storage_metadata_retried_total
-prometheus_remote_storage_metadata_total
-prometheus_remote_storage_queue_highest_sent_timestamp_seconds
-prometheus_remote_storage_read_queries_total
-prometheus_remote_storage_read_request_duration_seconds_bucket
-prometheus_remote_storage_read_request_duration_seconds_count
-prometheus_remote_storage_read_request_duration_seconds_sum
-prometheus_remote_storage_remote_read_queries
-prometheus_remote_storage_samples_bytes_total
-prometheus_remote_storage_samples_dropped_total
-prometheus_remote_storage_samples_failed_total
-prometheus_remote_storage_samples_in_total
-prometheus_remote_storage_samples_pending
-prometheus_remote_storage_samples_retried_total
-prometheus_remote_storage_samples_total
-prometheus_remote_storage_sent_batch_duration_seconds_bucket
-prometheus_remote_storage_sent_batch_duration_seconds_count
-prometheus_remote_storage_sent_batch_duration_seconds_sum
-prometheus_remote_storage_shard_capacity
-prometheus_remote_storage_shards
-prometheus_remote_storage_shards_desired
-prometheus_remote_storage_shards_max
-prometheus_remote_storage_shards_min
-prometheus_remote_storage_string_interner_zero_reference_releases_total
-prometheus_rule_evaluation_duration_seconds
-prometheus_rule_evaluation_duration_seconds_count
-prometheus_rule_evaluation_duration_seconds_sum
-prometheus_rule_evaluation_failures_total
-prometheus_rule_evaluations_total
-prometheus_rule_group_duration_seconds
-prometheus_rule_group_duration_seconds_count
-prometheus_rule_group_duration_seconds_sum
-prometheus_rule_group_interval_seconds
-prometheus_rule_group_iterations_missed_total
-prometheus_rule_group_iterations_total
-prometheus_rule_group_last_duration_seconds
-prometheus_rule_group_last_evaluation_samples
-prometheus_rule_group_last_evaluation_timestamp_seconds
-prometheus_rule_group_rules
-prometheus_sd_consul_rpc_duration_seconds_count
-prometheus_sd_consul_rpc_duration_seconds_sum
-prometheus_sd_consul_rpc_failures_total
-prometheus_sd_discovered_targets
-prometheus_sd_dns_lookup_failures_total
-prometheus_sd_dns_lookups_total
-prometheus_sd_failed_configs
-prometheus_sd_file_read_errors_total
-prometheus_sd_file_scan_duration_seconds_count
-prometheus_sd_file_scan_duration_seconds_sum
-prometheus_sd_kubernetes_events_total
-prometheus_sd_received_updates_total
-prometheus_sd_updates_total
-prometheus_target_interval_length_seconds
-prometheus_target_interval_length_seconds_count
-prometheus_target_interval_length_seconds_sum
-prometheus_target_metadata_cache_bytes
-prometheus_target_metadata_cache_entries
-prometheus_target_scrape_pool_exceeded_target_limit_total
-prometheus_target_scrape_pool_reloads_failed_total
-prometheus_target_scrape_pool_reloads_total
-prometheus_target_scrape_pool_sync_total
-prometheus_target_scrape_pool_targets
-prometheus_target_scrape_pools_failed_total
-prometheus_target_scrape_pools_total
-prometheus_target_scrapes_cache_flush_forced_total
-prometheus_target_scrapes_exceeded_sample_limit_total
-prometheus_target_scrapes_sample_duplicate_timestamp_total
-prometheus_target_scrapes_sample_out_of_bounds_total
-prometheus_target_scrapes_sample_out_of_order_total
-prometheus_target_sync_length_seconds
-prometheus_target_sync_length_seconds_count
-prometheus_target_sync_length_seconds_sum
-prometheus_template_text_expansion_failures_total
-prometheus_template_text_expansions_total
-prometheus_treecache_watcher_goroutines
-prometheus_treecache_zookeeper_failures_total
-prometheus_tsdb_blocks_loaded
-prometheus_tsdb_checkpoint_creations_failed_total
-prometheus_tsdb_checkpoint_creations_total
-prometheus_tsdb_checkpoint_deletions_failed_total
-prometheus_tsdb_checkpoint_deletions_total
-prometheus_tsdb_compaction_chunk_range_seconds_bucket
-prometheus_tsdb_compaction_chunk_range_seconds_count
-prometheus_tsdb_compaction_chunk_range_seconds_sum
-prometheus_tsdb_compaction_chunk_samples_bucket
-prometheus_tsdb_compaction_chunk_samples_count
-prometheus_tsdb_compaction_chunk_samples_sum
-prometheus_tsdb_compaction_chunk_size_bytes_bucket
-prometheus_tsdb_compaction_chunk_size_bytes_count
-prometheus_tsdb_compaction_chunk_size_bytes_sum
-prometheus_tsdb_compaction_duration_seconds_bucket
-prometheus_tsdb_compaction_duration_seconds_count
-prometheus_tsdb_compaction_duration_seconds_sum
-prometheus_tsdb_compaction_populating_block
-prometheus_tsdb_compactions_failed_total
-prometheus_tsdb_compactions_skipped_total
-prometheus_tsdb_compactions_total
-prometheus_tsdb_compactions_triggered_total
-prometheus_tsdb_data_replay_duration_seconds
-prometheus_tsdb_head_active_appenders
-prometheus_tsdb_head_chunks
-prometheus_tsdb_head_chunks_created_total
-prometheus_tsdb_head_chunks_removed_total
-prometheus_tsdb_head_gc_duration_seconds_count
-prometheus_tsdb_head_gc_duration_seconds_sum
-prometheus_tsdb_head_max_time
-prometheus_tsdb_head_max_time_seconds
-prometheus_tsdb_head_min_time
-prometheus_tsdb_head_min_time_seconds
-prometheus_tsdb_head_samples_appended_total
-prometheus_tsdb_head_series
-prometheus_tsdb_head_series_created_total
-prometheus_tsdb_head_series_not_found_total
-prometheus_tsdb_head_series_removed_total
-prometheus_tsdb_head_truncations_failed_total
-prometheus_tsdb_head_truncations_total
-prometheus_tsdb_isolation_high_watermark
-prometheus_tsdb_isolation_low_watermark
-prometheus_tsdb_lowest_timestamp
-prometheus_tsdb_lowest_timestamp_seconds
-prometheus_tsdb_mmap_chunk_corruptions_total
-prometheus_tsdb_out_of_bound_samples_total
-prometheus_tsdb_out_of_order_samples_total
-prometheus_tsdb_reloads_failures_total
-prometheus_tsdb_reloads_total
-prometheus_tsdb_retention_limit_bytes
-prometheus_tsdb_size_retentions_total
-prometheus_tsdb_storage_blocks_bytes
-prometheus_tsdb_symbol_table_size_bytes
-prometheus_tsdb_time_retentions_total
-prometheus_tsdb_tombstone_cleanup_seconds_bucket
-prometheus_tsdb_tombstone_cleanup_seconds_count
-prometheus_tsdb_tombstone_cleanup_seconds_sum
-prometheus_tsdb_vertical_compactions_total
-prometheus_tsdb_wal_completed_pages_total
-prometheus_tsdb_wal_corruptions_total
-prometheus_tsdb_wal_fsync_duration_seconds_count
-prometheus_tsdb_wal_fsync_duration_seconds_sum
-prometheus_tsdb_wal_page_flushes_total
-prometheus_tsdb_wal_segment_current
-prometheus_tsdb_wal_truncate_duration_seconds_count
-prometheus_tsdb_wal_truncate_duration_seconds_sum
-prometheus_tsdb_wal_truncations_failed_total
-prometheus_tsdb_wal_truncations_total
-prometheus_tsdb_wal_writes_failed_total
-prometheus_wal_watcher_current_segment
-prometheus_wal_watcher_record_decode_failures_total
-prometheus_wal_watcher_records_read_total
-prometheus_wal_watcher_samples_sent_pre_tailing_total
-prometheus_web_federation_errors_total
-prometheus_web_federation_warnings_total
-promhttp_metric_handler_errors_total
-promhttp_metric_handler_requests_in_flight
-promhttp_metric_handler_requests_total
-scrape_duration_seconds
-scrape_samples_post_metric_relabeling
-scrape_samples_scraped
-scrape_series_added
+....
 up
 > select * from node_load1
 name: node_load1
@@ -1020,79 +650,9 @@ time                __name__   instance job   value
 1612341698852000000 node_load1 node2    node2 0.6
 1612341710647000000 node_load1 node1    node1 2.47802734375
 1612341713852000000 node_load1 node2    node2 0.47
-1612341725647000000 node_load1 node1    node1 2.291015625
-1612341728852000000 node_load1 node2    node2 0.43
-1612341740647000000 node_load1 node1    node1 2.1337890625
-1612341743852000000 node_load1 node2    node2 0.41
-1612341755647000000 node_load1 node1    node1 2.63330078125
-1612341758852000000 node_load1 node2    node2 0.4
-1612341770647000000 node_load1 node1    node1 2.77587890625
-1612341773852000000 node_load1 node2    node2 0.31
-1612341785647000000 node_load1 node1    node1 2.7021484375
 1612341788852000000 node_load1 node2    node2 0.24
 1612341800647000000 node_load1 node1    node1 2.6875
 1612341803857000000 node_load1 node2    node2 0.19
-1612341815647000000 node_load1 node1    node1 3.0458984375
-1612341818852000000 node_load1 node2    node2 0.14
-1612341830654000000 node_load1 node1    node1 3.2626953125
-1612341833852000000 node_load1 node2    node2 0.11
-1612341845647000000 node_load1 node1    node1 3.19775390625
-1612341848852000000 node_load1 node2    node2 0.17
-1612341860647000000 node_load1 node1    node1 2.86962890625
-1612341863852000000 node_load1 node2    node2 0.36
-1612341875647000000 node_load1 node1    node1 2.744140625
-1612341878852000000 node_load1 node2    node2 0.35
-1612341890647000000 node_load1 node1    node1 2.78759765625
-1612341893959000000 node_load1 node2    node2 0.27
-1612341905647000000 node_load1 node1    node1 3.70849609375
-1612341908852000000 node_load1 node2    node2 0.21
-1612341920647000000 node_load1 node1    node1 3.40283203125
-1612341923852000000 node_load1 node2    node2 0.16
-1612341935647000000 node_load1 node1    node1 3.01708984375
-1612341938852000000 node_load1 node2    node2 0.27
-1612341950647000000 node_load1 node1    node1 6.3642578125
-1612341953852000000 node_load1 node2    node2 0.21
-1612341965647000000 node_load1 node1    node1 5.46484375
-1612341968852000000 node_load1 node2    node2 0.16
-1612341980657000000 node_load1 node1    node1 4.5673828125
-1612341983852000000 node_load1 node2    node2 0.28
-1612341995647000000 node_load1 node1    node1 4.0712890625
-1612341998852000000 node_load1 node2    node2 0.35
-1612342010647000000 node_load1 node1    node1 4.2333984375
-1612342013852000000 node_load1 node2    node2 0.27
-1612342025647000000 node_load1 node1    node1 4.14453125
-1612342028852000000 node_load1 node2    node2 0.21
-1612342040647000000 node_load1 node1    node1 5.02490234375
-1612342043852000000 node_load1 node2    node2 0.16
-1612342055647000000 node_load1 node1    node1 4.2802734375
-1612342058852000000 node_load1 node2    node2 0.13
-1612342070647000000 node_load1 node1    node1 3.6142578125
-1612342073852000000 node_load1 node2    node2 0.74
-1612342085647000000 node_load1 node1    node1 3.046875
-1612342088852000000 node_load1 node2    node2 0.58
-1612342100647000000 node_load1 node1    node1 2.69189453125
-1612342103852000000 node_load1 node2    node2 0.69
-1612342115647000000 node_load1 node1    node1 2.6845703125
-1612342119043000000 node_load1 node2    node2 0.54
-1612342130647000000 node_load1 node1    node1 2.60009765625
-1612342133852000000 node_load1 node2    node2 0.49
-1612342145647000000 node_load1 node1    node1 2.4599609375
-1612342148852000000 node_load1 node2    node2 0.45
-1612342160647000000 node_load1 node1    node1 2.19140625
-1612342163852000000 node_load1 node2    node2 0.43
-1612342175647000000 node_load1 node1    node1 1.97607421875
-1612342178852000000 node_load1 node2    node2 0.33
-1612342190647000000 node_load1 node1    node1 2.28173828125
-1612342193852000000 node_load1 node2    node2 0.48
-1612342205647000000 node_load1 node1    node1 2.0712890625
-1612342208852000000 node_load1 node2    node2 0.53
-1612342220647000000 node_load1 node1    node1 4.08837890625
-1612342223852000000 node_load1 node2    node2 0.49
-1612342235647000000 node_load1 node1    node1 3.6064453125
-1612342238852000000 node_load1 node2    node2 0.53
-1612342250647000000 node_load1 node1    node1 3.25
-1612342253852000000 node_load1 node2    node2 0.41
-1612342265647000000 node_load1 node1    node1 3.126953125
 1612342268852000000 node_load1 node2    node2 0.59
 >
 
@@ -1515,7 +1075,310 @@ $ curl 'http://localhost:9090/api/v1/query_range?query=up&start=2015-07-01T20:10
 }
 ```
 
+### 编码查询PromQL
 
+如下示例展示了查询指定时间范围内`node_load15`的指标数据
+
+```go
+package main
+
+import (
+	"encoding/base64"
+	"github.com/go-resty/resty/v2"
+)
+
+func main() {
+	response, err := resty.New().R().Get("http://localhost:9090/api/v1/query_range?query=node_load15&start=1612487600.024&end=1612489400.024&step=14")
+	if err != nil {
+		panic(err)
+	}
+	println(response.String())
+}
+```
+
+程序运行后返回：
+
+```json
+{
+  "status": "success",
+  "data": {
+    "resultType": "matrix",
+    "result": [
+      {
+        "metric": {
+          "__name__": "node_load15",
+          "instance": "node2",
+          "job": "node2"
+        },
+        "values": [
+          [
+            1612488496.024,
+            "0.19"
+          ],
+          [
+            1612488510.024,
+            "0.19"
+          ],
+          [
+            1612488524.024,
+            "0.18"
+          ],
+          [
+            1612488538.024,
+            "0.18"
+          ],
+          [
+            1612488552.024,
+            "0.18"
+          ],
+          [
+            1612488566.024,
+            "0.18"
+          ],
+          [
+            1612488580.024,
+            "0.18"
+          ],
+          [
+            1612488594.024,
+            "0.18"
+          ],
+          [
+            1612488608.024,
+            "0.18"
+          ],
+          [
+            1612488622.024,
+            "0.18"
+          ],
+          [
+            1612488636.024,
+            "0.17"
+          ],
+          [
+            1612488650.024,
+            "0.17"
+          ],
+          [
+            1612488664.024,
+            "0.18"
+          ],
+          [
+            1612488678.024,
+            "0.18"
+          ],
+          [
+            1612488692.024,
+            "0.18"
+          ],
+          [
+            1612488706.024,
+            "0.18"
+          ],
+          [
+            1612488720.024,
+            "0.18"
+          ],
+          [
+            1612488734.024,
+            "0.17"
+          ],
+          [
+            1612488748.024,
+            "0.17"
+          ],
+          [
+            1612488762.024,
+            "0.17"
+          ],
+          [
+            1612488776.024,
+            "0.17"
+          ],
+          [
+            1612488790.024,
+            "0.16"
+          ],
+          [
+            1612488804.024,
+            "0.16"
+          ],
+          [
+            1612488818.024,
+            "0.16"
+          ],
+          [
+            1612488832.024,
+            "0.16"
+          ],
+          [
+            1612488846.024,
+            "0.17"
+          ],
+          [
+            1612488860.024,
+            "0.18"
+          ],
+          [
+            1612488874.024,
+            "0.2"
+          ],
+          [
+            1612488888.024,
+            "0.21"
+          ],
+          [
+            1612488902.024,
+            "0.2"
+          ],
+          [
+            1612488916.024,
+            "0.2"
+          ],
+          [
+            1612488930.024,
+            "0.21"
+          ],
+          [
+            1612488944.024,
+            "0.21"
+          ],
+          [
+            1612488958.024,
+            "0.21"
+          ],
+          [
+            1612488972.024,
+            "0.21"
+          ],
+          [
+            1612488986.024,
+            "0.2"
+          ],
+          [
+            1612489000.024,
+            "0.2"
+          ],
+          [
+            1612489014.024,
+            "0.2"
+          ],
+          [
+            1612489028.024,
+            "0.2"
+          ],
+          [
+            1612489042.024,
+            "0.2"
+          ],
+          [
+            1612489056.024,
+            "0.2"
+          ],
+          [
+            1612489070.024,
+            "0.19"
+          ],
+          [
+            1612489084.024,
+            "0.2"
+          ],
+          [
+            1612489098.024,
+            "0.2"
+          ],
+          [
+            1612489112.024,
+            "0.2"
+          ],
+          [
+            1612489126.024,
+            "0.21"
+          ],
+          [
+            1612489140.024,
+            "0.2"
+          ],
+          [
+            1612489154.024,
+            "0.24"
+          ],
+          [
+            1612489168.024,
+            "0.24"
+          ],
+          [
+            1612489182.024,
+            "0.29"
+          ],
+          [
+            1612489196.024,
+            "0.28"
+          ],
+          [
+            1612489210.024,
+            "0.29"
+          ],
+          [
+            1612489224.024,
+            "0.28"
+          ],
+          [
+            1612489238.024,
+            "0.27"
+          ],
+          [
+            1612489252.024,
+            "0.27"
+          ],
+          [
+            1612489266.024,
+            "0.27"
+          ],
+          [
+            1612489280.024,
+            "0.28"
+          ],
+          [
+            1612489294.024,
+            "0.28"
+          ],
+          [
+            1612489308.024,
+            "0.27"
+          ],
+          [
+            1612489322.024,
+            "0.27"
+          ],
+          [
+            1612489336.024,
+            "0.3"
+          ],
+          [
+            1612489350.024,
+            "0.3"
+          ],
+          [
+            1612489364.024,
+            "0.3"
+          ],
+          [
+            1612489378.024,
+            "0.3"
+          ],
+          [
+            1612489392.024,
+            "0.3"
+          ]
+        ]
+      }
+    ]
+  }
+}
+```
+
+将该数据结构转化为对应图表所需的格式即可。
 
 # 附件
 
@@ -1528,12 +1391,24 @@ global:
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
+# remote_write:
+#   - url: "http://promscale-connector:9201/write"
+
+# remote_read:
+#   - url: "http://promscale-connector:9201/read"
+
+remote_write:
+  - url: "http://influxdb:8086/api/v1/prom/write?db=prometheus&u=influxdb&p=influxdb"
+
+remote_read:
+  - url: "http://influxdb:8086/api/v1/prom/read?db=prometheus&u=influxdb&p=influxdb"
+
 # Alertmanager configuration
 alerting:
   alertmanagers:
   - static_configs:
     - targets:
-      - localhost:9093
+      - alertmanager:9093
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
@@ -1551,33 +1426,65 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-    - targets: ['localhost:9090']
+    - targets: ['prometheus:9090']
 
-  - job_name: 'node1'
-    static_configs:
-    - targets: ['localhost:9100']
-      labels:
-        instance: 'node1'
+  # - job_name: 'node1'
+  #   static_configs:
+  #   - targets: ['172.24.107.47:9100']
+  #     labels:
+  #       instance: 'node1'
 
-  - job_name: 'node2'
-    static_configs:
-    - targets: ['192.168.223.2:9100']
-      labels:
-        instance: 'node2'
+  # - job_name: 'node2'
+  #   static_configs:
+  #   - targets: ['192.168.223.2:9100']
+  #     labels:
+  #       instance: 'node2'
+
+  - job_name: 'file_ds'
+    file_sd_configs:
+    - files:
+      - 'targets.json'
+      refresh_interval: 1m
 ```
 
 校验:
 
 ```bash
 ./promtool check config prometheus.yml
-Checking prometheus.yml
-  SUCCESS: 2 rule files found
+```
 
-Checking alerts/memory_over.yml
-  SUCCESS: 1 rules found
+### targets.json
 
-Checking alerts/server_down.yml
-  SUCCESS: 1 rules found
+```json
+[
+  {
+    "targets": [
+      "172.24.107.44:9100"
+    ],
+    "labels": {
+      "instance": "node1",
+      "job": "node1"
+    }
+  },
+  {
+    "targets": [
+      "192.168.223.2:9100"
+    ],
+    "labels": {
+      "instance": "node2",
+      "job": "node2"
+    }
+  },
+  {
+    "targets": [
+      "192.168.223.6:9100"
+    ],
+    "labels": {
+      "instance": "node3",
+      "job": "node3"
+    }
+  }
+]
 ```
 
 ### alerts/memory_over.yml
@@ -1600,8 +1507,6 @@ groups:
 
 ```bash
 ./promtool check rules alerts/memory_over.yml
-Checking alerts/memory_over.yml
-  SUCCESS: 1 rules found
 ```
 
 ### alerts/server_down.yml
@@ -1624,8 +1529,186 @@ groups:
 
 ```bash
 ./promtool check rules alerts/server_down.yml
-Checking alerts/server_down.yml
-  SUCCESS: 1 rules found
+```
+
+### alerts/alert-rules.yml
+
+```yaml
+groups:
+- name: monitor_base
+  rules:
+  - alert: CpuUsageAlert_waring
+    expr: sum(avg(irate(node_cpu_seconds_total{mode!='idle'}[5m])) without (cpu)) by (instance) > 0.60
+    for: 2m
+    labels:
+      level: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} CPU usage high"
+      description: "{{ $labels.instance }} CPU usage above 60% (current value: {{ $value }})"
+  - alert: CpuUsageAlert_serious
+    #expr: sum(avg(irate(node_cpu_seconds_total{mode!='idle'}[5m])) without (cpu)) by (instance) > 0.85
+    expr: (100 - (avg by (instance) (irate(node_cpu_seconds_total{job=~".*",mode="idle"}[5m])) * 100)) > 85
+    for: 3m
+    labels:
+      level: serious
+    annotations:
+      summary: "Instance {{ $labels.instance }} CPU usage high"
+      description: "{{ $labels.instance }} CPU usage above 85% (current value: {{ $value }})"
+  - alert: MemUsageAlert_waring
+    expr: avg by(instance) ((1 - (node_memory_MemFree_bytes + node_memory_Buffers_bytes + node_memory_Cached_bytes) / node_memory_MemTotal_bytes) * 100) > 70
+    for: 2m
+    labels:
+      level: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} MEM usage high"
+      description: "{{$labels.instance}}: MEM usage is above 70% (current value is: {{ $value }})"
+  - alert: MemUsageAlert_serious
+    expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes)/node_memory_MemTotal_bytes > 0.90
+    for: 3m
+    labels:
+      level: serious
+    annotations:
+      summary: "Instance {{ $labels.instance }} MEM usage high"
+      description: "{{ $labels.instance }} MEM usage above 90% (current value: {{ $value }})"
+  - alert: DiskUsageAlert_warning
+    expr: (1 - node_filesystem_free_bytes{fstype!="rootfs",mountpoint!="",mountpoint!~"/(run|var|sys|dev).*"} / node_filesystem_size_bytes) * 100 > 80
+    for: 2m
+    labels:
+      level: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} Disk usage high"
+      description: "{{$labels.instance}}: Disk usage is above 80% (current value is: {{ $value }})"
+  - alert: DiskUsageAlert_serious
+    expr: (1 - node_filesystem_free_bytes{fstype!="rootfs",mountpoint!="",mountpoint!~"/(run|var|sys|dev).*"} / node_filesystem_size_bytes) * 100 > 90
+    for: 3m
+    labels:
+      level: serious
+    annotations:
+      summary: "Instance {{ $labels.instance }} Disk usage high"
+      description: "{{$labels.instance}}: Disk usage is above 90% (current value is: {{ $value }})"
+  - alert: NodeFileDescriptorUsage
+    expr: avg by (instance) (node_filefd_allocated{} / node_filefd_maximum{}) * 100 > 60
+    for: 2m
+    labels:
+      level: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} File Descriptor usage high"
+      description: "{{$labels.instance}}: File Descriptor usage is above 60% (current value is: {{ $value }})"
+  - alert: NodeLoad15
+    expr: avg by (instance) (node_load15{}) > 80
+    for: 2m
+    labels:
+      level: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} Load15 usage high"
+      description: "{{$labels.instance}}: Load15 is above 80 (current value is: {{ $value }})"
+  - alert: NodeAgentStatus
+    expr: avg by (instance) (up{}) == 0
+    for: 2m
+    labels:
+      level: warning
+    annotations:
+      summary: "{{$labels.instance}}: has been down"
+      description: "{{$labels.instance}}: Node_Exporter Agent is down (current value is: {{ $value }})"
+  - alert: NodeProcsBlocked
+    expr: avg by (instance) (node_procs_blocked{}) > 10
+    for: 2m
+    labels:
+      level: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }}  Process Blocked usage high"
+      description: "{{$labels.instance}}: Node Blocked Procs detected! above 10 (current value is: {{ $value }})"
+  - alert: NetworkTransmitRate
+    #expr:  avg by (instance) (floor(irate(node_network_transmit_bytes_total{device="ens192"}[2m]) / 1024 / 1024)) > 50
+    expr:  avg by (instance) (floor(irate(node_network_transmit_bytes_total{}[2m]) / 1024 / 1024 * 8 )) > 40
+    for: 1m
+    labels:
+      level: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} Network Transmit Rate usage high"
+      description: "{{$labels.instance}}: Node Transmit Rate (Upload) is above 40Mbps/s (current value is: {{ $value }}Mbps/s)"
+  - alert: NetworkReceiveRate
+    #expr:  avg by (instance) (floor(irate(node_network_receive_bytes_total{device="ens192"}[2m]) / 1024 / 1024)) > 50
+    expr:  avg by (instance) (floor(irate(node_network_receive_bytes_total{}[2m]) / 1024 / 1024 * 8 )) > 40
+    for: 1m
+    labels:
+      level: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} Network Receive Rate usage high"
+      description: "{{$labels.instance}}: Node Receive Rate (Download) is above 40Mbps/s (current value is: {{ $value }}Mbps/s)"
+  - alert: DiskReadRate
+    expr: avg by (instance) (floor(irate(node_disk_read_bytes_total{}[2m]) / 1024 )) > 200
+    for: 2m
+    labels:
+      level: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} Disk Read Rate usage high"
+      description: "{{$labels.instance}}: Node Disk Read Rate is above 200KB/s (current value is: {{ $value }}KB/s)"
+  - alert: DiskWriteRate
+    expr: avg by (instance) (floor(irate(node_disk_written_bytes_total{}[2m]) / 1024 / 1024 )) > 20
+    for: 2m
+    labels:
+      level: warning
+    annotations:
+      summary: "Instance {{ $labels.instance }} Disk Write Rate usage high"
+      description: "{{$labels.instance}}: Node Disk Write Rate is above 20MB/s (current value is: {{ $value }}MB/s)"
+```
+
+### alerts/node_status.yml
+
+```yaml
+groups:
+- name: 实例存活告警规则
+  rules:
+  - alert: 实例存活告警
+    expr: up == 0
+    for: 20s
+    labels:
+      user: prometheus
+      severity: Disaster
+    annotations:
+      summary: "Instance {{ $labels.instance }} is down"
+      description: "Instance {{ $labels.instance }} of job {{ $labels.job }} has been down for more than 20s."
+      value: "{{ $value }}"
+
+- name: 内存告警规则
+  rules:
+  - alert: "内存使用率告警"
+    expr: (node_memory_MemTotal_bytes - (node_memory_MemFree_bytes+node_memory_Buffers_bytes+node_memory_Cached_bytes )) / node_memory_MemTotal_bytes * 100 > 75
+    for: 1m
+    labels:
+      user: prometheus
+      severity: warning
+    annotations:
+      summary: "服务器: {{$labels.alertname}} 内存报警"
+      description: "{{ $labels.alertname }} 内存资源利用率大于75%！(当前值: {{ $value }}%)"
+      value: "{{ $value }}"
+
+- name: CPU报警规则
+  rules:
+  - alert: CPU使用率告警
+    expr: 100 - (avg by (instance)(irate(node_cpu_seconds_total{mode="idle"}[1m]) )) * 100 > 70
+    for: 1m
+    labels:
+      user: prometheus
+      severity: warning
+    annotations:
+      summary: "服务器: {{$labels.alertname}} CPU报警"
+      description: "服务器: CPU使用超过70%！(当前值: {{ $value }}%)"
+      value: "{{ $value }}"
+
+- name: 磁盘报警规则
+  rules:
+  - alert: 磁盘使用率告警
+    expr: (node_filesystem_size_bytes - node_filesystem_avail_bytes) / node_filesystem_size_bytes * 100 > 80
+    for: 1m
+    labels:
+      user: prometheus
+      severity: warning
+    annotations:
+      summary: "服务器: {{$labels.alertname}} 磁盘报警"
+      description: "服务器:{{$labels.alertname}},磁盘设备: 使用超过80%！(挂载点: {{ $labels.mountpoint }} 当前值: {{ $value }}%)"
+      value: "{{ $value }}"
 ```
 
 ### alertmanager.yml
@@ -1636,37 +1719,231 @@ global:
   smtp_smarthost: 'smtp.exmail.qq.com:465'
   smtp_from: 'fengj@anchnet.com'
   smtp_auth_username: 'fengj@anchnet.com'
-  smtp_auth_password: '******'
+  smtp_auth_password: '********'
   smtp_require_tls: false
+
+templates:
+  - '/etc/alertmanager/templates/*.tmpl'
 
 route:
   group_by: ['alertname']
   group_wait: 10s
   group_interval: 10s
-  repeat_interval: 1h
-  receiver: 'mail-receiver'
+  repeat_interval: 30m
+  receiver: 'web.hook'
 
 receivers:
+
 - name: 'mail-receiver'
   email_configs:
     - to: 'fengj@anchnet.com'
+      html: '{{ template "email.to.html" . }}'
+      headers: { Subject: "Prometheus 告警邮件" }
       send_resolved: true
+
+- name: 'web.hook'
+  webhook_configs:
+  - url: 'http://172.24.107.44:5001/'
+
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'dev', 'instance']
 ```
 
 校验
 
 ```bash
 ./amtool check-config alertmanager.yml
-Checking 'alertmanager.yml'  SUCCESS
-Found:
- - global config
- - route
- - 0 inhibit rules
- - 1 receivers
- - 0 templates
 ```
 
+### templates/email.tmpl
 
+```
+{{ define "email.to.html" }}
+{{- if gt (len .Alerts.Firing) 0 -}}
+{{ range .Alerts }}
+=========start==========<br>
+告警程序: prometheus_alert <br>
+告警级别: {{ .Labels.severity }} <br>
+告警类型: {{ .Labels.alertname }} <br>
+告警主机: {{ .Labels.instance }} <br>
+告警主题: {{ .Annotations.summary }}  <br>
+告警详情: {{ .Annotations.description }} <br>
+触发时间: {{ .StartsAt.Format "2006-01-02 15:04:05" }} <br>
+=========end==========<br>
+{{ end }}{{ end -}}
+ 
+{{- if gt (len .Alerts.Resolved) 0 -}}
+{{ range .Alerts }}
+=========start==========<br>
+告警程序: prometheus_alert <br>
+告警级别: {{ .Labels.severity }} <br>
+告警类型: {{ .Labels.alertname }} <br>
+告警主机: {{ .Labels.instance }} <br>
+告警主题: {{ .Annotations.summary }} <br>
+告警详情: {{ .Annotations.description }} <br>
+触发时间: {{ .StartsAt.Format "2006-01-02 15:04:05" }} <br>
+恢复时间: {{ .EndsAt.Format "2006-01-02 15:04:05" }} <br>
+=========end==========<br>
+{{ end }}{{ end -}}
+ 
+{{- end }}
+```
+
+### templates/wechat.tml
+
+```
+{{ define "wechat.default.message" }}
+{{- if gt (len .Alerts.Firing) 0 -}}
+{{- range $index, $alert := .Alerts -}}
+{{- if eq $index 0 }}
+========= 监控报警 =========
+告警状态：{{   .Status }}
+告警级别：{{ .Labels.severity }}
+告警类型：{{ $alert.Labels.alertname }}
+故障主机: {{ $alert.Labels.instance }}
+告警主题: {{ $alert.Annotations.summary }}
+告警详情: {{ $alert.Annotations.message }}{{ $alert.Annotations.description}};
+触发阀值：{{ .Annotations.value }}
+故障时间: {{ ($alert.StartsAt.Add 28800e9).Format "2006-01-02 15:04:05" }}
+========= = end =  =========
+{{- end }}
+{{- end }}
+{{- end }}
+{{- if gt (len .Alerts.Resolved) 0 -}}
+{{- range $index, $alert := .Alerts -}}
+{{- if eq $index 0 }}
+========= 异常恢复 =========
+告警类型：{{ .Labels.alertname }}
+告警状态：{{   .Status }}
+告警主题: {{ $alert.Annotations.summary }}
+告警详情: {{ $alert.Annotations.message }}{{ $alert.Annotations.description}};
+故障时间: {{ ($alert.StartsAt.Add 28800e9).Format "2006-01-02 15:04:05" }}
+恢复时间: {{ ($alert.EndsAt.Add 28800e9).Format "2006-01-02 15:04:05" }}
+{{- if gt (len $alert.Labels.instance) 0 }}
+实例信息: {{ $alert.Labels.instance }}
+{{- end }}
+========= = end =  =========
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+```
+
+### webhook程序
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	router := gin.Default()
+	router.POST("/", func(context *gin.Context) {
+		data, err := context.GetRawData()
+		if err != nil {
+			fmt.Errorf("error:%+v", err)
+		}
+		fmt.Println(string(data))
+	})
+	router.Run(":5001")
+}
+```
+
+### docker-compose.yml
+
+```yaml
+version: '3'
+
+services:
+
+  influxdb:
+    image: influxdb:1.8.4
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=prometheus
+      - INFLUXDB_ADMIN_ENABLED=true
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+      - INFLUXDB_USER=influxdb
+      - INFLUXDB_USER_PASSWORD=influxdb
+
+  chronograf:
+    image: chronograf:1.8.8
+    container_name: chronograf
+    ports:
+      - "8888:8888"
+    environment:
+      - INFLUXDB-URL=http://influxdb:8086
+
+  db:
+    image: timescaledev/promscale-extension:latest-pg12
+    container_name: db
+    ports:
+      - 5432:5432/tcp
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: timescale
+
+  prometheus:
+    image: prom/prometheus:v2.24.1
+    container_name: prometheus
+    entrypoint: ["/bin/prometheus", "--config.file=/etc/prometheus/prometheus.yml", "--web.enable-lifecycle"]
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./targets.json:/etc/prometheus/targets.json:ro
+      - ./alerts:/etc/prometheus/alerts:ro
+    ports:
+      - 9090:9090
+    restart: always
+
+  promscale-connector:
+    image: timescale/promscale:latest
+    container_name: promscale-connector
+    ports:
+      - 9201:9201/tcp
+    restart: on-failure
+    depends_on:
+      - db
+      - prometheus
+    environment:
+      PROMSCALE_LOG_LEVEL: debug
+      PROMSCALE_DB_CONNECT_RETRIES: 10
+      PROMSCALE_DB_HOST: db
+      PROMSCALE_DB_PASSWORD: postgres
+      PROMSCALE_WEB_TELEMETRY_PATH: /metrics-text
+      PROMSCALE_DB_SSL_MODE: allow
+
+  alertmanager:
+    image: prom/alertmanager:v0.21.0
+    container_name: alertmanager
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - ./templates:/etc/alertmanager/templates:ro
+    ports:
+      - 9093:9093
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    restart: always
+
+networks:
+  default:
+    driver: bridge
+```
 
 # 参考文档
 
