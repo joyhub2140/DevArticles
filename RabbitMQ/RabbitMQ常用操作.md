@@ -56,7 +56,7 @@ rabbitmqctl stop_app
 rabbitmqctl reset
 
 # 将节点加入指定集群中。在这个命令执行前需要停止RabbitMQ应用并重置节点。RabbitMQ集群中的节点只有两种类型：内存节点(ram)/磁盘节点(disc)
-rabbitmqctl join_cluster {cluster_node} [–ram]
+rabbitmqctl join_cluster {cluster_node} [--ram|--disc]
 # 如：rabbitmqctl join_cluster --ram rabbitmq@mqnode1
 
 rabbitmqctl start_app
