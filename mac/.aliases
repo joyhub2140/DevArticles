@@ -63,7 +63,6 @@ alias week='date +%V'
 alias tq="curl 'wttr.in/西安?lang=zh'"
 
 alias ip="curl icanhazip.com"
-alias ping='prettyping --nolegend'
 alias localip="ipconfig getifaddr en0"
 alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
 
@@ -73,6 +72,22 @@ psx() { ps -ax | grep -v grep | grep "$@"; }
 
 mk() {
   mkdir -p "$@" && cd "$@"
+}
+
+mclean() {
+  mvn clean -U
+}
+
+m2clean() {
+  find ~/.m2/repository -type f -name '*.lastUpdated' -ls -delete
+  find ~/.m2/repository -type f -name "unknown" -ls -delete
+  find ~/.m2/repository -type f -name "error" -ls -delete
+  find ~/.m2/repository -type f -name "*.BUILD-SNAPSHOT" -ls -delete
+  find ~/.m2/repository -type f -name "*BUILD*" -ls -delete
+  find ~/.m2/repository -type f -name "*SNAPSHOT*" -ls -delete
+  find ~/.m2/repository -type f -name "*RC*" -ls -delete
+  find ~/.m2/repository -type f -name "*M*" -ls -delete
+  find ~/.m2/repository -type d -empty -ls -delete
 }
 
 transfer() {
