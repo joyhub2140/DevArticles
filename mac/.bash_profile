@@ -28,7 +28,7 @@ export REDIS_HOME=~/develop/redis
 
 export MONGODB_HOME=~/develop/mongodb
 
-export PATH=$MONGODB_HOME/bin:$REDIS_HOME:$GRADLE_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$FLUTTER_HOME/bin:$M2_HOME/bin:$GOBIN:$GOPATH/bin:$NODE_HOME/bin:$PATH
+export PATH=$MONGODB_HOME/bin:$REDIS_HOME:$GRADLE_HOME/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$FLUTTER_HOME/bin:$M2_HOME/bin:$GOROOT/bin:$GOBIN:$NODE_HOME/bin:$PATH
 
 export PATH=~/.krew/bin:~/.local/bin:$PATH
 
