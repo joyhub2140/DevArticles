@@ -32,7 +32,7 @@ export PATH=$MONGODB_HOME/bin:$REDIS_HOME:$GRADLE_HOME/bin:$ANDROID_HOME/tools:$
 
 export PATH=~/.krew/bin:~/.local/bin:$PATH
 
-http='http://127.0.0.1:1087'
+http='http://127.0.0.1:7890'
 socks5='socks5://127.0.0.1:7890'
 
 function reset_launchpad
@@ -61,7 +61,7 @@ function noproxy
 
 function proxy
 {
-    http_proxy=$socks5
+    http_proxy=$http
     HTTP_PROXY=$http_proxy
     https_proxy=$http_proxy
     HTTPS_PROXY=$https_proxy

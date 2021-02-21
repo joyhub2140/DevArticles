@@ -55,9 +55,9 @@ alias ni='npm install'
 alias nr='npm run'
 alias pip='pip3'
 
-alias brewc='brew cleanup'
-alias brewu='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
-alias update='brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update -n /usr/local/bin --system; sudo gem cleanup'
+alias brewc='brew cleanup --prune=all'
+alias brewu='brew update; brew upgrade; brew cleanup --prune=all; brew doctor'
+alias update='brew update; brew upgrade; brew cleanup --prune=all; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update -n /usr/local/bin --system; sudo gem cleanup'
 
 alias week='date +%V'
 alias tq="curl 'wttr.in/西安?lang=zh'"
